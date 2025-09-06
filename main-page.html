@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALE homepage</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .links {
+      margin-inline: 20px;
+    }
+
+    .main-sc {
+      position: relative;
+      width: 100%;
+      height: auto;
+      display: flex;
+    }
+
+    aside, main {
+      display: inline-block;
+    }
+
+    #students, #home-btn, #insight-btn {
+      background-color: transparent;
+      color: white;
+      padding-left: 20px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      outline: none;
+      border: none;
+      text-align: center;
+    }
+
+select {
+  background-color: #260701;
+  width: 230px;
+  height: 70px;
+  border: none;
+  outline: none;
+  color: white;
+}
+
+#nav-btn button {
+  border: none;
+  width: 100%;
+  height: 70px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  margin:0;
+}
+#nav-btn button:hover, #side-btn button:hover, #side-btn select:hover{
+  background-color: #260701;
+  color: white;
+}
+
+
+    aside {
+      position: sticky;
+      top: 18px;
+      width: 350px;
+      height: fit-content;
+      padding-left: 2px;
+      margin-right: 10px;
+    }
+
+    aside button:hover {
+      background-color: #1970A2;
+    }
+
+    main {
+      width: 70%;
+      height: auto;
+      display: block;
+    }
+
+    .card {
+      display: none;
+    }
+
+    .card.active {
+      display: block;
+      height: auto;
+    }
+
+    .card.dev-card {
+      display: none;
+      flex-direction: row;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .card.dev-card.active {
+      display: flex;
+    }
+
+    .close-btn {
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 25px;
+      text-align: center;
+      position: absolute;
+      top: 10px;
+      right: -7px;
+      z-index: 2;
+    }
+
+    main #home-sc, 
+    #quotes-sc, 
+    #philo-sc, 
+    #raphael-pido,
+    #marquez,
+    #delarama {
+      width: 100%;
+      height: 90vh;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .dev-img{
+      width: 30%;
+      height: 400px;
+      display: grid; 
+      align-items: end;
+      transition: background-size 0.5s ease;
+    }
+
+  .quotes-bg{
+    width: 100%;
+    height: 600px;
+    position: absolute;
+    z-index: -1;
+    object-fit: cover;
+  }
+
+  #quotes-sc{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+  }
+  .quotes {
+  color: black;
+  display: flex;
+  width: 30%;
+  height: 250px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 10px;
+  box-sizing: border-box;
+  position: inherit;
+  top: 250px;
+}
+
+.dev-modules {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  padding: 20px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.insight-sc{
+   background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+  </style>
+</head>
+<body>
+  <header style="display: flex; align-items: center">
+    <div style="width: 65%">
+      <h1 style="margin-left: 30px; overflow-x: hidden">ALE</h1>
+    </div>
+    <div style="width: 35%; display: flex; justify-content: flex-end; margin-right: 20px; overflow-x: hidden;">
+      <a href="" class="links">Facebook</a>
+      <a href="" class="links">Github</a>
+      <a href="" class="links">Instagram</a>
+    </div>
+  </header>
+
+  <div class="main-sc">
+    <aside id="sideMenu">
+      <div id="nav-btn" style="width: 100%; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(to right, rgba(139, 69, 19, 0.1), #4b2e2e);">
+        <button onclick="goIntro ()" id="intro-btn">Introduction</button>
+        <button onclick="scrollToSection('quotes-sc')" id="quote-btn">Quotes</button>
+        <button onclick="scrollToSection('philo-sc')" id="philo-btn">Developers</button>
+      </div>
+    </aside>
+    
+    <main>
+      <div id="side-btn" style=" gap: 50px; position: sticky; top: 20px; width: 100%; z-index: 2; display: flex; justify-content: center; background: linear-gradient(to right, rgba(210, 180, 140, 0.1), #3e2723);">
+        <select name="students" id="students">
+        <option value="" disabled selected hidden>Browse for the developers</option>
+        <option value="raphael-pido">Jose Raphael Pido</option>
+        <option value="marquez">Kent Marquez</option>
+        <option value="delarama">Joseph Dela Rama</option>
+      </select>
+        <button id="home-btn" style="width: 180px;" onclick="goHome()">Home</button>
+        <button id="insight-btn" style="width: 180px;" onclick="goInsight()"> What we learned</button>
+      </div>
+
+      <!-- main sections card -->
+      <div class="card active" id="main-sections">
+
+        <div id="intro-sc" style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;">
+          <div class="dev-modules" style="width: 100%; height: 400px; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: top; padding-top: 80px">
+              <h1 style="line-height: 0.1; font-size: 70px"> <span style="color: #8ecae6;">< Welcome</span>, we're <span style="background: linear-gradient(90deg, #ff7e5f, #feb47b); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ALE! ></span></h1>
+              <div style="display: flex; flex-direction: row; height: auto">
+                <div style="display: flex; flex-direction: column; gap: 10px; height: auto">
+                    <p style="line-height: 1.4; font-size: 30px; text-align: center; margin-bottom: 180px">
+                        This website serves as our major 
+                        <span style="background: linear-gradient(90deg, #fcbf49, #f77f00); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        project
+                        </span> 
+                        for the prelims <br>
+                        This includes info about ourselves, our academic standing, <br>
+                        specializations, and more!
+                    </p>
+                </div>
+
+              </div>
+          </div>
+          <p style="text-align: center; justify-self: center">“Sometimes the most powerful motivation comes from a place of coziness. When you feel safe, warm, and at peace, you're more ready to dream bigger and move forward.”</p>
+        </div>
+
+        <div id="quotes-sc">
+          <div class="quotes-bg" style="background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0)),url(pixel-lake.jpg);background-size: cover;background-position: center;">
+          </div>
+          <div class="quotes" style="background-color: #f5f5f5; color: #3e2723;"><q>"Kung kaya nila, sanaol :<</q></div>
+          <div class="quotes" style="background-color: white; padding: 20px"><q>"A friend of mine once gave me a box full of darkness. It took me years to realize that, it, too, was a gift"</q></div>
+          <div class="quotes" style="background-color: #fdf3e7; color: #3e2723;">"Be the change that you wish to see in the world"</div>
+        </div>
+
+        <div id="philo-sc" style=" display: flex; align-items: center">
+          <!--Developer images-->
+          <div style="display: block; width: 100%; justify-content: center; text-align: center; align-items: center">
+            <div><h1> Meet the developers</h1></div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+              <div class="dev-img" style="background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0)),url(HACKIT2025.JPG);background-size: cover;background-position: center;">
+                <h3>Jose Raphael Pido</h3>
+              </div>
+
+              <div class="dev-img"style="background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)),url(joseph.jpg);background-size: cover;background-position: center;" >
+              <h3>Joseph Dela Rama</h3>
+              </div>
+              <div class="dev-img" style="background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)),url(kent.jpg);background-size: cover;background-position: center;">
+              <h3>Kent Marquez</h3>
+              </div>
+            </div>              
+          </div>
+        </div>
+      </div>
+
+      <!-- developer cards -->
+      <div class="card dev-card" id="raphael-pido">
+        <button class="close-btn" onclick="goHome()">×</button>
+        <div style="width: 30%; height: 100%; display: block; text-align: center; padding: 20px; border-right:1px solid grey; ">
+          <div>
+            <img src="HACKIT2025.JPG" style="width: 70%; height: 20%; border-radius: 20px">
+            <h3> Jose Raphael Pido</h3>
+          </div>
+          <div style="border: none; border-top: 1px solid grey; padding-top: 10px">
+            <p style="font-size:12px; margin-top: 30px">Email <br> <span style="font-size: 18px; color: #f77f00">babap1104@gmail.com</span></p>
+            <p style="font-size:12px; margin-top: 30px">Phone <br> <span style="font-size: 18px; color: #f77f00"> 0993 732 9241</span></p>
+            <p style="font-size:12px; margin-top: 30px">Birthday <br> <span style="font-size: 18px; color: #f77f00"> Nov 4, 2004</span></p>
+            <p style="font-size:12px; margin-top: 30px">Location <br> <span style="font-size: 18px; color: #f77f00"> Bacolod city</span></p>
+          </div>
+        </div>
+        <div style="width: 90%; height: 300px; display: block; margin-top: 10px">
+            <div class="dev-modules">
+              <p>Hello! My name is Raphael, and I'm a college IT student with a passion for learning and creating. I enjoy exploring new technologies and turning ideas into working projects. This page is a little glimpse into who I am and what I do.</p>
+            </div>
+            <div style="width: 100%; height: 200px; display: flex; display: flex; margin-top: 20px">
+              <div style="width: 50%; height: 200px;"></div>
+              <div style="width: 50%; height: 200px;"></div>
+            </div>
+        </div>
+
+
+      </div>
+
+      <div class="card dev-card" id="marquez">
+        <button class="close-btn" onclick="goHome()">×</button>
+                <div style="width: 30%; height: 100%; display: block; text-align: center; padding: 20px; border-right:1px solid grey; ">
+          <div>
+            <img src="kent.jpg" style="width: 70%; height: 20%; border-radius: 20px">
+            <h3> Kent Marquez</h3>
+          </div>
+          <div style="border: none; border-top: 1px solid grey; padding-top: 10px">
+            <p style="font-size:12px; margin-top: 30px">Email <br> <span style="font-size: 18px; color: #f77f00">jsphdlrm@gmail.com</span></p>
+            <p style="font-size:12px; margin-top: 30px">Phone <br> <span style="font-size: 18px; color: #f77f00"> 0912 345 6789</span></p>
+            <p style="font-size:12px; margin-top: 30px">Birthday <br> <span style="font-size: 18px; color: #f77f00"> June 14, 2005</span></p>
+            <p style="font-size:12px; margin-top: 30px">Location <br> <span style="font-size: 18px; color: #f77f00"> Talisay city</span></p>
+          </div>
+        </div>
+        <div style="width: 70%; height: 100%; display: block; margin-top: 10px">
+            <div class="dev-modules">
+              <p>Hi, I'm a passionate student who's always eager to learn and take on new challenges. I enjoy exploring technology and creative ideas that push me to grow both academically and personally. Through this project, I hope to share a bit of myself and the skills I’m developing along the way.</p>
+            </div>
+            <div style="width: 100%; height: 200px;  display: flex; margin-top: 20px">
+              <div style="width: 50%; height: 200px;"></div>
+              <div style="width: 50%; height: 200px;"></div>
+            </div>
+        </div>
+      </div>
+
+      <div class="card dev-card" id="delarama">
+        <button class="close-btn" onclick="goHome()">×</button>
+                <div style="width: 30%; height: 100%; display: block; text-align: center; padding: 20px; border-right:1px solid grey; ">
+          <div>
+            <img src="joseph.jpg" style="width: 70%; height: 20%; border-radius: 20px">
+            <h3> Joseph Dela Rama</h3>
+          </div>
+          <div style="border: none; border-top: 1px solid grey; padding-top: 10px">
+            <p style="font-size:12px; margin-top: 30px">Email <br> <span style="font-size: 18px; color: #f77f00">kent@gmail.com</span></p>
+            <p style="font-size:12px; margin-top: 30px">Phone <br> <span style="font-size: 18px; color: #f77f00"> 0997 231 3456</span></p>
+            <p style="font-size:12px; margin-top: 30px">Birthday <br> <span style="font-size: 18px; color: #f77f00"> January 9, 2004</span></p>
+            <p style="font-size:12px; margin-top: 30px">Location <br> <span style="font-size: 18px; color: #f77f00"> Palawan city</span></p>
+          </div>
+        </div>
+        <div style="width: 70%; height: 100%; display: block; margin-top: 10px">
+            <div class="dev-modules">
+              <p>I'm , Joseph Dela Rama, someone who's always curious about how things work and how I can improve them. I like challenging myself with projects that let me be both creative and logical. This is a chance for me to show not just what I've learned, but also the person I'm becoming.</p>
+            </div>
+            <div style="width: 100%; height: 200px; display: flex; display: flex; margin-top: 20px">
+              <div style="width: 50%; height: 200px;"></div>
+              <div style="width: 50%; height: 200px;"></div>
+            </div>
+        </div>
+      </div>
+
+      <!--What we learned-->
+      <div class="card insight" id="insight-sc" style="width: 100%; height: 100px; margin-top: 20px;">
+          <div class="insight-sc" style="display: box; text-align: center;  box-sizing:content-box; padding: 30px; ">
+            <h1 >What we learned</h1>
+            <p style="text-align: justify;">Throughout my journey in learning HTML, CSS, and JavaScript, I discovered how these three technologies work together to build a complete website. HTML taught me how to structure content, CSS showed me how to style and design it, and JavaScript introduced interactivity. Each language plays a unique role but also complements the others, making web development both logical and creative. This class gave me a clearer understanding of how websites come to life from code.</p>
+          </div>
+
+          <div class="insight-sc" style="display: box; text-align: center;  box-sizing:content-box; padding: 30px; margin-top: 30px ">
+            <h1 >About HTMs</h1>
+            <p style="text-align: justify;">In HTML, I learned the importance of creating a strong foundation for a webpage. Using elements like headings, paragraphs, images, and links helped me understand how to organize content properly. I also explored semantic tags, which make websites easier to read for both users and search engines. Learning HTML showed me that good structure is the first step toward building functional and accessible websites.</p>
+          </div>
+
+          <div class="insight-sc" style="display: box; text-align: center;  box-sizing:content-box; padding: 30px; margin-top: 30px ">
+            <h1 >About CSS</h1>
+            <p style="text-align: justify;">CSS allowed me to transform plain HTML into something visually appealing. I learned how to control layout, colors, fonts, and spacing, which made a big difference in presentation. Features like flexbox and grid taught me how to position elements more effectively. Through CSS, I realized how design choices impact user experience and how small changes can make a website more engaging.</p>
+          </div>
+
+          <div class="insight-sc" style="display: box; text-align: center;  box-sizing:content-box; padding: 30px; margin-top: 30px; margin-bottom: 100px ">
+            <h1 >About JavaScript</h1>
+            <p style="text-align: justify;">JavaScript was where I truly saw interactivity come into play. I learned how to make buttons respond to clicks, forms validate input, and pages update dynamically without reloading. It made me appreciate how JavaScript connects logic with design, making websites more functional and user-friendly. Overall, JavaScript tied together everything I learned in HTML and CSS, helping me build more complete and interactive projects.</p>
+          </div>
+          <div style="width:100%; height: 100px">
+
+          </div>
+      </div>
+    </main>
+  </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    const $studentSelect = $('#students');
+    const $navBtns = $('#nav-btn');
+    const $sideMenu = $('#sideMenu');
+
+    function showCard(cardId) {
+      // deactivate all cards
+      $('.card').removeClass('active');
+
+      // activate selected card
+      $('#' + cardId).addClass('active');
+
+      // dev cards
+      if ($('#' + cardId).hasClass("dev-card")) {
+        $navBtns.hide();
+        $sideMenu.show();
+      }
+      // insight
+      else if (cardId === "insight-sc") {
+        $navBtns.hide();
+        $sideMenu.show();
+      }
+      // default
+      else {
+        $navBtns.css("display", "flex");
+        $sideMenu.show();
+      }
+    }
+
+    function goHome() {
+      showCard('main-sections');
+      $('html, body').animate({ scrollTop: 0 }, 'smooth');
+      $('#main-sections')[0].scrollIntoView({ behavior: "smooth" });
+    }
+
+    function scrollToSection(sectionId) {
+      showCard('main-sections');
+      const $section = $('#' + sectionId);
+      if ($section.length) {
+        $section[0].scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    function goIntro() {
+      showCard('main-sections');
+      $('#main-sections')[0].scrollIntoView({ behavior: "smooth" });
+    }
+
+    function goInsight() {
+      showCard('insight-sc');
+      $('html, body').animate({ scrollTop: 0 }, 'smooth');
+    }
+
+    // assign button events
+    $('#intro-btn').on('click', goIntro);
+    $('#quote-btn').on('click', function () { scrollToSection('quotes-sc'); });
+    $('#philo-btn').on('click', function () { scrollToSection('philo-sc'); });
+    $('#home-btn').on('click', goHome);
+    $('#insight-btn').on('click', goInsight);
+
+    // developer selector
+    $studentSelect.on('change', function () {
+      const selectedId = $(this).val();
+      if (selectedId) {
+        showCard(selectedId);
+        $('html, body').animate({ scrollTop: 0 }, 'smooth');
+      }
+      $(this).blur();
+    });
+
+    // close buttons inside dev cards
+    $('.close-btn').on('click', goHome);
+
+    // load home by default
+    $(window).on('load', goHome);
+    });
+
+    $(window).on("resize", function(){
+    alert("Window was resized!");
+    });
+</script>
+
+</body>
+</html>
